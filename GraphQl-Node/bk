@@ -1,0 +1,59 @@
+import express from 'express';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import ToDo from './mongoose/todo';
+import schema from './graphql/Schema/Schema';
+import {graphql} from 'graphql';
+import graphqlHTTP from 'express-graphql';
+
+const app = express();
+const MongoClient = require('mongodb').MongoClient;
+
+let url = "mongodb://localhost:27017/local";
+
+app.use(bodyParser.urlencoded({extended:true}))
+mongoose.connect(url)
+// Connect
+const connection = (closure) => {
+    return MongoClient.connect(url, (err, db) => {
+    let mdb =  db.db("local") 
+    if (err) return console.log(err);
+        closure(db);
+    });
+};
+
+var db = mongoose.connection;
+db.on('error', ()=> {console.log( '---FAILED to connect to mongoose')})
+db.once('open', () => {
+	console.log( '+++Connected to mongoose')
+})
+
+app.listen(3000,()=> {console.log("+++Express Server is Running!!!")})
+
+app.get('/',(req,res)=>{
+	res.sendFile(__dirname + '/index.html')
+})
+
+app.use('/graphql', graphqlHTTP (req => ({
+	schema
+	//,graphiql:true
+})))
+
+app.post('/addProduct', (req, res) => {
+	console.log("comming here")
+	console.log(">>>>>>>>"+JSON.stringify(req.body))
+    connection((mdb) => {
+        mdb.collection('abc')
+        .save(req.body, (err, result) => {
+        if(err){
+            res.send('cannot add the product at the moment')
+        }else{
+			res.setHeader('Access-Control-Allow-Origin','*')
+		    res.setHeader('Access-Control-Allow-Headers','Origin,X-Requested-With,Content-Type,Accept')
+            res.send('product '+req.body.item+' added successfully');
+        }
+  	})
+
+    });
+});
+

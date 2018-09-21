@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Holiday Inn",
+        "available": 5,
+        "city": "New York",
+        "cover": "https://image.ibb.co/eDQQwe/holiday_Inn_New_York.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Country Inn",
+        "available": 7,
+        "city": "Florida",
+        "cover": "https://image.ibb.co/gQy0Uz/country_Florida.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Crown Plaza",
+        "available": 2,
+        "city": "California",
+        "cover": "https://image.ibb.co/gCnoGe/crown_Plaza_California.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Holiday Inn",
+        "available": 11,
+        "city": "Bostan",
+        "cover": "https://image.ibb.co/m9wyGe/holidayy_Inn_Boston.jpg"
+    },
+    {
+        "id": 5,
+        "name": "JW Marriott",
+        "available": 4,
+        "city": "New York",
+        "cover": "https://image.ibb.co/c0nNbe/jw_Newyork.jpg"
+    },
+    {
+        "id": 6,
+        "name": "JW Marriott",
+        "available": 4,
+        "city": "Las Vegus",
+        "cover": "https://image.ibb.co/dQ8jpz/jwvegus.jpg"
+    }
+]
